@@ -1,0 +1,101 @@
+<table class="table-striped-custom">
+    <thead>
+        <th width="16%" >BATCH</th>
+        <th width="33%" >START DATE</th>
+        <th width="33%" >END DATE</th>
+        <th width="18%" ></th>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of batches; let idx = index">
+            <tr>
+                <td class="bold-text p-2" width="15%"> Batch {{idx+1}} </td>
+                <td class="p-2" >
+                    <app-date-picker></app-date-picker>
+                </td>
+                <td class="p-2" >
+                    <app-date-picker></app-date-picker>
+                </td>
+                <td class="p-2" width="15%">
+
+                    <div class="input-group">
+
+                        <!-- action button -->
+                        <div ngbDropdown>
+                            <button id="dropdownBasic1" ngbDropdownToggle class="option btn btn-outline-secondary calendar"
+                                type="button"></button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                <div>
+                                    <button class="unstyled-button" ngbDropdownItem>
+                                        <i class="fa fa-undo text-success" aria-hidden="true"></i>&nbsp;
+                                        <span>Reset</span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="unstyled-button" ngbDropdownItem>
+                                        <i class="fa fa-trash-o text-danger" aria-hidden="true"></i>&nbsp;
+                                        <span class="text-danger" >Delete</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- collapse/expand button -->
+                            <button id="dropdownBasic2" class="btn btn-outline-secondary calendar"
+                            [ngClass]="{expanded:data.isExpanded, collapsed:!data.isExpanded}"    
+                            (click)="data.isExpanded = !data.isExpanded"
+                            type="button"></button>
+                    </div>
+                </td>
+            </tr>
+            <ng-container >
+                <tr [hidden]="!data.isExpanded"  >
+                    <td></td>
+                    <td colspan="3" class="p-3" >
+                        <!-- Course name -->
+                        <div class="form-group pt-10">
+                            <label class="form-label bold-text">Course Location</label>
+                            <div>
+                                <select class="custom-select col-12 col-md-6 col-lg-6">
+                                    <option selected>Search Location</option>
+                                    <option value="1">Kolkata</option>
+                                    <option value="2">Bengaluru</option>
+                                    <option value="3">Mumbai</option>
+                                  </select>    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="form-group pt-10">
+                                    <label class="form-label bold-text">Course Language</label>
+                                    <app-multi-checkbox-selector></app-multi-checkbox-selector>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="form-group pt-10">
+                                    <label class="form-label bold-text">Course Cost(Ex GST)</label>
+                                    <input type="number" min="0" class="form-control" placeholder="Rs." />
+                                </div>
+                            </div>
+
+
+                            <!-- weekend course radio -->
+                            <span class="pt-10">Is there a weekend course?
+                            <span>
+                                <input id="weekend-course-yes" type="radio" value="yes" name="weekendCourse" ngModel>
+                                <label class="p-2" for="weekend-course-yes">Yes</label>
+                            </span>
+                            <span>
+                                <input id="weekend-course-no" type="radio" value="no" name="weekendCourse" ngModel>
+                                <label class="p-2" for="weekend-course-no">No</label>
+                            </span>
+                        </span>
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+        </ng-container>
+    </tbody>
+</table>
+<div style="padding:20px 0px;" >
+    <span (click)="addCourse()" class="add-course-span" > <img src="assets/images/ic_addcourse.png"> ADD ANOTHER COURSE DATE</span>
+</div>

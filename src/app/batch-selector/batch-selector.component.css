@@ -1,0 +1,59 @@
+tr:nth-child(4n+1) {
+    background-color: #f2f2f2;
+}
+tr:nth-child(4n+2) {
+    background-color: #f2f2f2;
+}
+
+button.collapsed, button.collapsed:active {
+    width: 2rem;
+    height: 2rem;
+    background-image: url('../../assets/images/ic_dropdown.png') !important;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+    border: none;
+}
+
+button.expanded, button.expanded:active {
+    width: 2rem;
+    height: 2rem;
+    background-image: url('../../assets/images/ic_collapse.png') !important;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+    border: none;
+}
+
+button.option, button.option:active {
+    width: 2rem;
+    height: 2rem;
+    background-image: url('../../assets/images/ic_options.png') !important;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+    border: none;
+}
+
+.pt-10{
+    padding-top: 20px;
+}
+
+.dropdown-toggle::after{
+    content: none !important;
+}
+
+.unstyled-button {
+    border: none;
+    /* padding: 0; */
+    background: none;
+  }
+
+.table-striped td{
+    padding: 10px 5px;
+}
+
+.add-course-span{
+    color : #03C772;
+    cursor : pointer;
+}

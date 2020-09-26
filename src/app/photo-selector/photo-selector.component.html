@@ -1,0 +1,10 @@
+<div class="col-12 text-right" >
+    <input id="files" type="file" style="visibility:hidden;"  multiple (change)="detectFiles($event)">
+    <label for="files" class="btn"><img src="assets/images/ic_upload.png"><span class="blue-text"> UPLOAD </span></label>
+</div>
+<div>
+    <div *ngFor="let url of urls" class="img-div" >
+        <img class="img-thumbnail" [src]="url">
+    </div>
+    <div *ngFor="let i of dummyObj"  class="bg-dark img-div">&nbsp;</div>
+</div>

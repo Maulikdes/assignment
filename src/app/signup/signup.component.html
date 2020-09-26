@@ -1,0 +1,78 @@
+<div class="row margin-left-right-0">
+    <div class="col-lg-6 col-md-12 col-12  bg-white">
+        <form class="signup-form" >
+            <h2 class="bold-text form-header" >
+                Add course details
+            </h2>
+            <hr />
+            
+            <!-- Course name -->
+            <div class="form-group" >
+                <label class="form-label bold-text" >Course Name</label>
+                <input class="form-control" placeholder="Add course name" />
+            </div>
+            
+            <!-- Previous course gallery -->
+            <div class="form-group" >
+                <label class="form-label bold-text" >Previous Course Gallery</label>
+                <app-photo-selector></app-photo-selector>
+            </div>
+
+            <!-- Aircraft type -->
+            <div class="form-group">
+                <label class="form-label bold-text" >Aircraft Type</label>
+                <div>
+                    <span>
+                        <input id="multi-rotar" type="radio" value="Multi Rotar" name="aircraftType" ngModel> 
+                        <label class="p-2" for="multi-rotar">Multi Rotar</label>
+                    </span>
+                    <span class="p-5" >
+                        <input id="fixedWing" type="radio" value="Fixed Wing" name="aircraftType" ngModel> 
+                        <label class="p-2" for="fixedWing">Fixed Wing</label>                
+                    </span>
+                </div>
+            </div>
+
+
+            <!-- Batch details -->
+            <div class="form-group" >
+                <app-batch-selector></app-batch-selector>
+            </div>
+
+
+            <!-- Course Details -->
+            <div class="form-group" >
+                <label class="form-label bold-text" >COURSE DETAILS</label>
+                <div>
+                    <textarea class="form-control"></textarea>
+                </div>
+            </div>
+
+            <!-- Error message -->
+            <div *ngIf="true" class='form-group alert alert-danger'>
+                <i class="fa fa-exclamation-circle"></i>
+                Fill in the required information to proceed.
+                <span style="float:right" >X</span>
+            </div>
+
+            <div class="padding-bottom-150">&nbsp;</div>
+        </form>
+        <!-- button for save cancel and submit -->
+        <div class="submission col-12 col-md-12 col-lg-6" >
+            <div class="action-bar">
+                <button class="top-margin-4 col-12 col-md-6 col-lg-3 offset-lg-1 btn btn-outline-dark bold-text" >
+                    SKIP
+                </button>
+                <button class="top-margin-4 col-12 col-md-6 offset-lg-2 col-lg-3  btn btn-outline-dark bold-text" >
+                    BACK
+                </button>
+                <button class="top-margin-4 col-12 col-md-12 col-lg-3 btn btn-outline-dark bold-text save-btn text-ellipsis" >
+                    SAVE & PUBLISH
+                </button>
+            </div>
+        </div>    
+    </div>
+    <div class="col-lg-6 d-none d-xxl-block d-lg-block" >
+        <img class="bg-img" src="assets/images/ic_bg.png" />
+    </div>
+</div>

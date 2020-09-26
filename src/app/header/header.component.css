@@ -1,0 +1,18 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    -webkit-box-shadow: 0 10px 10px -10px #000000;
+    -moz-box-shadow: 0 10px 10px -10px #000000;
+    box-shadow: 0 10px 10px -10px #000000;
+    z-index: 5;
+}
+
+.header .logo {
+    padding: 25px 0px;
+}
+
+.header-logo{
+    width:95%;
+    margin:auto;
+}

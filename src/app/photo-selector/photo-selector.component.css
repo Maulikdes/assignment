@@ -1,0 +1,18 @@
+.blue-text{
+    color: #147DF6;
+    font-size: 12px;
+    padding-top:2px;
+}
+
+.img-div{
+    display: inline-block; 
+    margin:7px;
+    height: 50px;
+    width: 50px;
+}
+
+.img-thumbnail{
+    margin-top:16px;
+    height: 50px;
+    width: 50px;
+}
