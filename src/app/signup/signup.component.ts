@@ -87,7 +87,7 @@ export class SignupComponent{
         }
       }else{
         this.batchValidated = false;
-        this.isShowErrMsg = false;
+        this.isShowErrMsg = true;
       }
     })
   }
