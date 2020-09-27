@@ -1,5 +1,5 @@
-<mat-form-field class="col-8" >
-                <input matInput [matDatepicker]="picker" #picker [formControl]="date">
+<mat-form-field class="col-10 p-0">
+                <input placeholder="DD MMM" matInput [matDatepicker]="picker" #picker [formControl]="date" (dateChange)="setValue()" [(ngModel)]="dateValue" >
                 <mat-datepicker-toggle matPrefix [for]="picker">
                     <mat-icon matDatepickerToggleIcon></mat-icon>
                 </mat-datepicker-toggle>

@@ -70,3 +70,19 @@
 .cross-btn:hover{
     color:red;
 }
+
+input[type=radio] {
+    display: none;
+}
+
+input[type=radio] + label {
+    background: url('../../assets/images/ic_radio0.png') no-repeat left;
+    padding-left: 2rem;
+}
+input[type=radio]:checked + label {
+    background: url('../../assets/images/ic_radio1.png') no-repeat left;
+}
+
+.err-class{
+    border-color:red;
+}

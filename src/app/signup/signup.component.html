@@ -1,6 +1,6 @@
 <div class="row margin-left-right-0">
     <div class="col-lg-6 col-md-12 col-12  bg-white">
-        <form class="signup-form" >
+        <div class="signup-form" >
             <h2 class="bold-text form-header" >
                 Add course details
             </h2>
@@ -9,34 +9,39 @@
             <!-- Course name -->
             <div class="form-group" >
                 <label class="form-label bold-text" >Course Name</label>
-                <input class="form-control" placeholder="Add course name" />
+                <input [ngClass]="{ 'err-class' : isShowNameErr}" class="form-control" name="courseName" placeholder="Add course name" [(ngModel)]="courseName" />
+                <div class="text-right" [ngStyle]="{visibility: isShowNameErr?'visible':'hidden' }" ><span class="text-danger"  >Add course name</span></div>
             </div>
             
             <!-- Previous course gallery -->
             <div class="form-group" >
                 <label class="form-label bold-text" >Previous Course Gallery</label>
-                <app-photo-selector></app-photo-selector>
+                <app-photo-selector [photos]="coursePhotos" (valueChange)='storeImageData($event)' ></app-photo-selector>
             </div>
 
             <!-- Aircraft type -->
             <div class="form-group">
                 <label class="form-label bold-text" >Aircraft Type</label>
                 <div>
-                    <span>
-                        <input id="multi-rotar" type="radio" value="Multi Rotar" name="aircraftType" ngModel> 
-                        <label class="p-2" for="multi-rotar">Multi Rotar</label>
-                    </span>
-                    <span class="p-5" >
-                        <input id="fixedWing" type="radio" value="Fixed Wing" name="aircraftType" ngModel> 
-                        <label class="p-2" for="fixedWing">Fixed Wing</label>                
-                    </span>
+                    <label (click)="aircraftType='Multi Rotar'" style="cursor: pointer;" >
+                        <input type="radio" value="Multi Rotar" name="aircraftType" [(ngModel)]="aircraftType"> 
+                        <label aria-label="img-label" >&nbsp;</label>
+                        Multi Rotar
+                    </label>
+                    <label class="pl-4" (click)="aircraftType='Fixed Wing'" style="cursor: pointer;" >
+                        <input type="radio" value="Fixed Wing" name="aircraftType" [(ngModel)]="aircraftType"> 
+                        <label aria-label="img-label" >&nbsp;</label>
+                        Fixed Wing
+                    </label>
+                    <div class="text-right pull-right" [ngStyle]="{visibility: isShowAircraftTypeErr?'visible':'hidden', display:'inline' }" ><span class="text-danger"  >Select Aircraft Type</span></div>
                 </div>
+                
             </div>
 
 
             <!-- Batch details -->
             <div class="form-group" >
-                <app-batch-selector></app-batch-selector>
+                <app-batch-selector name="batch" [validate]="isValidate" (setData)="setBatchData($event)" ></app-batch-selector>
             </div>
 
 
@@ -44,7 +49,8 @@
             <div class="form-group" >
                 <label class="form-label bold-text" >COURSE DETAILS</label>
                 <div>
-                    <textarea class="form-control"></textarea>
+                    <textarea [ngClass]="{ 'err-class' : isShowDetailErr}"  [(ngModel)]="courseDetails" class="form-control"></textarea>
+                    <div class="text-right" [ngStyle]="{visibility: isShowDetailErr?'visible':'hidden' }" ><span class="text-danger"  >Add course details</span></div>
                 </div>
             </div>
 
@@ -52,11 +58,11 @@
             <div *ngIf="isShowErrMsg" class='form-group alert alert-danger'>
                 <i class="fa fa-exclamation-circle"></i>
                 Fill in the required information to proceed.
-                <span class="cross-btn" (click)="hideErrorMsg()" >X</span>
+                <span class="cross-btn" (click)="hideErrorMsg()" >x</span>
             </div>
 
             <div class="padding-bottom-150">&nbsp;</div>
-        </form>
+        </div>
         <!-- button for save cancel and submit -->
         <div class="submission col-12 col-md-12 col-lg-6" >
             <div class="action-bar">
@@ -66,7 +72,7 @@
                 <button class="top-margin-4 col-12 col-md-6 offset-lg-2 col-lg-3  btn btn-outline-dark bold-text" >
                     BACK
                 </button>
-                <button class="top-margin-4 col-12 col-md-12 col-lg-3 btn btn-outline-dark bold-text save-btn text-ellipsis" >
+                <button (click)="save()" class="top-margin-4 col-12 col-md-12 col-lg-3 btn btn-outline-dark bold-text save-btn text-ellipsis" >
                     SAVE & PUBLISH
                 </button>
             </div>

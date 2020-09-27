@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-photo-selector',
@@ -6,7 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./photo-selector.component.css']
 })
 export class PhotoSelectorComponent {
-  urls = new Array<string>();
+  
+  @Output() valueChange = new EventEmitter();
+  @Input('photos') urls: Array<string>;
   dummyObj = [1,2,3,4,5,6,7,8,9];
   detectFiles(event) {
     let files = event.target.files;
@@ -23,6 +26,7 @@ export class PhotoSelectorComponent {
         reader.readAsDataURL(file);
       }
       this.dummyObj.splice(0, files.length);
+      this.valueChange.emit(this.urls);
     }
   }
 }

@@ -3,7 +3,10 @@
 .bold-text{
     font-weight: bold;
 }
-html, body { height: 100%; }
+html, body { 
+    height: 100%; 
+    background-color:#f5f6fa;
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .dropdown-btn{
@@ -12,4 +15,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-datepicker-toggle {
     background: url("assets/images/ic_selectdate.png") no-repeat !important;
+}
+
+.mat-form-field-underline{
+    height: 0px !important;
+}
+
+.multiselect-dropdown .selected-item{
+    background: #03C772 !important;
+    border-color: #03C772 !important;
+}
+
+.multiselect-item-checkbox input + div:before{
+    color:#03C772 !important;
+    border-color:#03C772 !important;
 }

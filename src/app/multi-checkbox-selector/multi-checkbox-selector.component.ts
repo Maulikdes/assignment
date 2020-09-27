@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 
@@ -12,6 +13,7 @@ export class MultiCheckboxSelectorComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
+  @Output() change = new EventEmitter();
 
   constructor() { }
 
@@ -36,9 +38,9 @@ export class MultiCheckboxSelectorComponent implements OnInit {
     };
   }
   onItemSelect(item: any) {
-    console.log(item);
+    this.change.emit(item);
   }
   onSelectAll(items: any) {
-    console.log(items);
+    this.change.emit(items);
   }
 }

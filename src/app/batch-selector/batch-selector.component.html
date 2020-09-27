@@ -1,21 +1,21 @@
 <table class="table-striped-custom">
     <thead>
-        <th width="20%" >BATCH</th>
-        <th width="28%" >START DATE</th>
-        <th width="28%" >END DATE</th>
-        <th width="20%" ></th>
+        <th>BATCH</th>
+        <th>START DATE</th>
+        <th>END DATE</th>
+        <th class="static-field text-danger" style="font-weight: normal;" > {{batchesValidated?'':'Incomplete Details'}} </th>
     </thead>
     <tbody>
         <ng-container *ngFor="let data of batches; let idx = index">
-            <tr>
-                <td class="bold-text p-2"> Batch {{idx+1}} </td>
-                <td >
-                    <app-date-picker></app-date-picker>
+            <tr class="first-row" >
+                <td class="bold-text p-2 static-field" [ngClass]="{'text-danger': !data.validated}" > Batch {{idx+1}} </td>
+                <td class="date-field" >
+                    <app-date-picker [date]="data.startDate" (setDate)="setStartDate($event, idx)"  ></app-date-picker>
                 </td>
-                <td>
-                    <app-date-picker></app-date-picker>
+                <td class="date-field" >
+                    <app-date-picker [date]="data.endDate" (setDate)="setEndDate($event, idx)" ></app-date-picker>
                 </td>
-                <td class="p-2">
+                <td class="p-2 static-field">
 
                     <div class="input-group">
 
@@ -25,13 +25,13 @@
                                 type="button"></button>
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                 <div>
-                                    <button class="unstyled-button" ngbDropdownItem>
+                                    <button (click)="reset(idx)" class="unstyled-button" ngbDropdownItem>
                                         <i class="fa fa-undo text-success" aria-hidden="true"></i>&nbsp;
                                         <span>Reset</span>
                                     </button>
                                 </div>
                                 <div>
-                                    <button class="unstyled-button" ngbDropdownItem>
+                                    <button (click)="clear(idx)" class="unstyled-button" ngbDropdownItem>
                                         <i class="fa fa-trash-o text-danger" aria-hidden="true"></i>&nbsp;
                                         <span class="text-danger" >Delete</span>
                                     </button>
@@ -55,8 +55,8 @@
                         <div class="form-group pt-10">
                             <label class="form-label bold-text">Course Location</label>
                             <div>
-                                <select class="custom-select col-12 col-md-6 col-lg-6">
-                                    <option selected>Search Location</option>
+                                <select class="custom-select col-12 col-md-6 col-lg-6" [(ngModel)]="batches[idx].courseLocation" >
+                                    <option [value]="undefined" selected>Search Location</option>
                                     <option value="1">Kolkata</option>
                                     <option value="2">Bengaluru</option>
                                     <option value="3">Mumbai</option>
@@ -67,26 +67,33 @@
                             <div class="col-12 col-md-6 col-lg-6">
                                 <div class="form-group pt-10">
                                     <label class="form-label bold-text">Course Language</label>
-                                    <app-multi-checkbox-selector></app-multi-checkbox-selector>
+                                    <app-multi-checkbox-selector (change)="setLanguages(data, idx)" ></app-multi-checkbox-selector>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-6">
                                 <div class="form-group pt-10">
                                     <label class="form-label bold-text">Course Cost(Ex GST)</label>
-                                    <input type="number" min="0" class="form-control" placeholder="Rs." />
+                                    <input [(ngModel)]="batches[idx].courseCost" type="number" min="0" class="form-control" placeholder="Rs." />
                                 </div>
                             </div>
 
 
                             <!-- weekend course radio -->
-                            <span class="pt-10">Is there a weekend course?
+                            <span class="pt-10">Is there a weekend course? &nbsp;&nbsp;
                             <span>
-                                <input id="weekend-course-yes" type="radio" value="yes" name="weekendCourse" ngModel>
-                                <label class="p-2" for="weekend-course-yes">Yes</label>
+                                <label style="cursor: pointer;" (click)="batches[idx].weekendCourse = 'yes'" >
+                                    <input [id]="'weekend-course-yes-'+idx" type="radio" value="yes" name="weekendCourse" [(ngModel)]="batches[idx].weekendCourse">
+                                    <label aria-label="img-label">&nbsp;</label>
+                                    Yes
+                                </label>
                             </span>
+                            &nbsp;&nbsp;
                             <span>
-                                <input id="weekend-course-no" type="radio" value="no" name="weekendCourse" ngModel>
-                                <label class="p-2" for="weekend-course-no">No</label>
+                                <label style="cursor: pointer;" (click)="batches[idx].weekendCourse = 'no'">
+                                    <input [id]="'weekend-course-no-'+idx" type="radio" value="no" name="weekendCourse" [(ngModel)]="batches[idx].weekendCourse">
+                                    <label aria-label="img-label">&nbsp;</label>
+                                    No
+                                </label>
                             </span>
                         </span>
                         </div>

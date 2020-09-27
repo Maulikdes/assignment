@@ -49,11 +49,37 @@ button.option, button.option:active {
     background: none;
   }
 
-.table-striped td{
-    padding: 10px 5px;
-}
-
 .add-course-span{
     color : #03C772;
     cursor : pointer;
+}
+
+input[type=radio] {
+    display: none;
+}
+
+input[type=radio] + label {
+    background: url('../../assets/images/ic_radio0.png') no-repeat left;
+    padding-left: 2rem;
+}
+input[type=radio]:checked + label {
+    background: url('../../assets/images/ic_radio1.png') no-repeat left;
+}
+
+.static-field{
+    min-width: 6vw;
+}
+
+.date-field{
+    max-width: 12vw;
+}
+
+.show > .btn-outline-secondary.dropdown-toggle{
+    background-color: lightgrey;
+    border-color: lightgrey;
+}
+
+.table-striped-custom{
+    width: 100%;
+    table-layout: fixed;
 }

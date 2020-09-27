@@ -2,9 +2,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
   Inject,
-  OnDestroy
+  Input,
+  OnDestroy,
+  Output
 } from '@angular/core';
+
 import {MatCalendar} from '@angular/material/datepicker';
 import {DateAdapter, MAT_DATE_FORMATS, MatDateFormats, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
@@ -41,10 +45,16 @@ export const MY_FORMATS = {
     },{provide: MAT_DATE_FORMATS, useValue: MY_FORMATS}]
 })
 export class DatePickerComponent {
+  @Output() setDate = new EventEmitter();
+  @Input('date') dateValue; 
   exampleHeader = ExampleHeader;
-    date = new FormControl(moment());
-
+  date = new FormControl();
+  setValue(){
+    this.setDate.emit(this.dateValue);
+  }
 }
+
+
 
 /** Custom header component for datepicker. */
 @Component({
