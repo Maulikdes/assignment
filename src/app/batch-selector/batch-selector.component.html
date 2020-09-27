@@ -10,10 +10,10 @@
             <tr class="first-row" >
                 <td class="bold-text p-2 static-field" [ngClass]="{'text-danger': !data.validated}" > Batch {{idx+1}} </td>
                 <td class="date-field" >
-                    <app-date-picker [date]="data.startDate" (setDate)="setStartDate($event, idx)"  ></app-date-picker>
+                    <app-date-picker [ngStyle]="{'border':data.validationObj.startDate?'':'dotted red'}" [date]="data.startDate" (setDate)="setStartDate($event, idx)"  ></app-date-picker>
                 </td>
                 <td class="date-field" >
-                    <app-date-picker [date]="data.endDate" (setDate)="setEndDate($event, idx)" ></app-date-picker>
+                    <app-date-picker [ngStyle]="{'border':data.validationObj.endDate?'':'dotted red'}" [date]="data.endDate" (setDate)="setEndDate($event, idx)" ></app-date-picker>
                 </td>
                 <td class="p-2 static-field">
 
@@ -52,7 +52,7 @@
                     <td></td>
                     <td colspan="3" class="p-3" >
                         <!-- Course name -->
-                        <div class="form-group pt-10">
+                        <div class="form-group">
                             <label class="form-label bold-text">Course Location</label>
                             <div>
                                 <select class="custom-select col-12 col-md-6 col-lg-6" [(ngModel)]="batches[idx].courseLocation" >
@@ -62,24 +62,31 @@
                                     <option value="3">Mumbai</option>
                                   </select>    
                             </div>
+                            <span [ngStyle]="{visibility: data.validationObj.courseLocation || batches[idx].courseLocation  ? 'hidden':'visible' }" class="text-danger" > Select Course Location </span>
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-6 col-lg-6">
-                                <div class="form-group pt-10">
+                                <div class="form-group">
                                     <label class="form-label bold-text">Course Language</label>
-                                    <app-multi-checkbox-selector (change)="setLanguages(data, idx)" ></app-multi-checkbox-selector>
+                                    <app-multi-checkbox-selector (change)="setLanguages($event, idx)" ></app-multi-checkbox-selector>
                                 </div>
+                                <span [ngStyle]="{visibility: data.validationObj.courseLanguages ? 'hidden':'visible' }" class="text-danger" > Select at least one language </span>
                             </div>
                             <div class="col-12 col-md-6 col-lg-6">
-                                <div class="form-group pt-10">
+                                <div class="form-group">
                                     <label class="form-label bold-text">Course Cost(Ex GST)</label>
                                     <input [(ngModel)]="batches[idx].courseCost" type="number" min="0" class="form-control" placeholder="Rs." />
+                                    <span [ngStyle]="{visibility: data.validationObj.courseCost ? 'hidden':'visible' }" class="text-danger" > 
+                                        {{data.courseCost==undefined? 'Set the course cost':''}}
+                                        {{data.courseCost < 0 ? 'Set the valid value':''}}
+                                    </span>
+
                                 </div>
                             </div>
 
 
                             <!-- weekend course radio -->
-                            <span class="pt-10">Is there a weekend course? &nbsp;&nbsp;
+                            <span>Is there a weekend course? &nbsp;&nbsp;
                             <span>
                                 <label style="cursor: pointer;" (click)="batches[idx].weekendCourse = 'yes'" >
                                     <input [id]="'weekend-course-yes-'+idx" type="radio" value="yes" name="weekendCourse" [(ngModel)]="batches[idx].weekendCourse">
@@ -95,6 +102,7 @@
                                     No
                                 </label>
                             </span>
+                            <div [ngStyle]="{visibility: data.validationObj.weekendCourse || batches[idx].weekendCourse ? 'hidden':'visible' }" class="text-danger" > Select the weekend course option </div>
                         </span>
                         </div>
                     </td>

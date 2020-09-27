@@ -32,7 +32,7 @@ export const MY_FORMATS = {
   },
 };
 
-/** @title Datepicker with custom calendar header */
+/** @title Datepicker with custom calendar header as shown in tropogo header */
 @Component({
   selector: 'app-date-picker',
   templateUrl: 'date-picker.component.html',
@@ -120,8 +120,3 @@ export class ExampleHeader<D> implements OnDestroy {
     this._calendar.activeDate =  this._dateAdapter.addCalendarMonths(this._calendar.activeDate, 1);
   }
 }
-
-
-/**  Copyright 2019 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license */

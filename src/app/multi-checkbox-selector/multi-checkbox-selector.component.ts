@@ -19,11 +19,10 @@ export class MultiCheckboxSelectorComponent implements OnInit {
 
   ngOnInit() {
     this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
+      { item_id: 1, item_text: 'English' },
+      { item_id: 2, item_text: 'Hindi' },
+      { item_id: 3, item_text: 'Gujarati' },
+      { item_id: 4, item_text: 'Marathi' },
     ];
     this.selectedItems = [
     ];
@@ -38,9 +37,9 @@ export class MultiCheckboxSelectorComponent implements OnInit {
     };
   }
   onItemSelect(item: any) {
-    this.change.emit(item);
+    this.change.emit(this.selectedItems);
   }
   onSelectAll(items: any) {
-    this.change.emit(items);
+    this.change.emit(this.selectedItems);
   }
 }

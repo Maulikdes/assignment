@@ -41,11 +41,14 @@ export class SignupComponent{
 
   }
 
+  // validation utility methods ahead
+
   validateName(){
     if(!this.courseName || this.courseName == ''){
       this.isShowNameErr = true;
       return false;
     }
+    this.isShowNameErr = false;
     return true;
   }
 
@@ -54,6 +57,7 @@ export class SignupComponent{
       this.isShowAircraftTypeErr = true;
       return false;
     }
+    this.isShowAircraftTypeErr = false;
     return true;
   }
 
@@ -62,6 +66,7 @@ export class SignupComponent{
       this.isShowDetailErr = true;
       return false;
     }
+    this.isShowDetailErr = false;
     return true;
   }
 

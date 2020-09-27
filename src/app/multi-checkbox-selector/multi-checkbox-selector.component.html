@@ -3,6 +3,7 @@
   [data]="dropdownList"
   [(ngModel)]="selectedItems"
   [settings]="dropdownSettings"
+  (onDeSelect)="onItemSelect($event)"
   (onSelect)="onItemSelect($event)"
   (onSelectAll)="onSelectAll($event)"
 >

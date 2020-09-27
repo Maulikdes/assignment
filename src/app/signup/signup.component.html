@@ -9,8 +9,8 @@
             <!-- Course name -->
             <div class="form-group" >
                 <label class="form-label bold-text" >Course Name</label>
-                <input [ngClass]="{ 'err-class' : isShowNameErr}" class="form-control" name="courseName" placeholder="Add course name" [(ngModel)]="courseName" />
-                <div class="text-right" [ngStyle]="{visibility: isShowNameErr?'visible':'hidden' }" ><span class="text-danger"  >Add course name</span></div>
+                <input [ngClass]="{ 'err-class' : isShowNameErr&&!courseName}" class="form-control" name="courseName" placeholder="Add course name" [(ngModel)]="courseName" />
+                <div class="text-right" [ngStyle]="{visibility: isShowNameErr&&!courseName ?'visible':'hidden' }" ><span class="text-danger"  >Add course name</span></div>
             </div>
             
             <!-- Previous course gallery -->
@@ -33,7 +33,7 @@
                         <label aria-label="img-label" >&nbsp;</label>
                         Fixed Wing
                     </label>
-                    <div class="text-right pull-right" [ngStyle]="{visibility: isShowAircraftTypeErr?'visible':'hidden', display:'inline' }" ><span class="text-danger"  >Select Aircraft Type</span></div>
+                    <div class="text-right pull-right" [ngStyle]="{visibility: isShowAircraftTypeErr&&!aircraftType?'visible':'hidden', display:'inline' }" ><span class="text-danger"  >Select Aircraft Type</span></div>
                 </div>
                 
             </div>
@@ -50,7 +50,7 @@
                 <label class="form-label bold-text" >COURSE DETAILS</label>
                 <div>
                     <textarea [ngClass]="{ 'err-class' : isShowDetailErr}"  [(ngModel)]="courseDetails" class="form-control"></textarea>
-                    <div class="text-right" [ngStyle]="{visibility: isShowDetailErr?'visible':'hidden' }" ><span class="text-danger"  >Add course details</span></div>
+                    <div class="text-right" [ngStyle]="{visibility: isShowDetailErr&&!courseDetails?'visible':'hidden' }" ><span class="text-danger"  >Add course details</span></div>
                 </div>
             </div>
 

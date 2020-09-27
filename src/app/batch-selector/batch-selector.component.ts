@@ -33,7 +33,15 @@ export class BatchSelectorComponent implements OnInit {
     courseCost:undefined,
     weekendCourse:undefined,
     isExpanded: true,
-    validated: true
+    validated: true,
+    validationObj:{
+      startDate:true,
+      endDate:true,
+      courseLocation:true,
+      courseLanguages:true,
+      courseCost:true,
+      weekendCourse:true
+    }
   }];
 
   @Input() validate: boolean;
@@ -62,7 +70,15 @@ export class BatchSelectorComponent implements OnInit {
       courseCost:undefined,
       weekendCourse:undefined,
       isExpanded: true,
-      validated: true
+      validated: true,
+      validationObj:{
+        startDate:true,
+        endDate:true,
+        courseLocation:true,
+        courseLanguages:true,
+        courseCost:true,
+        weekendCourse:true
+      }
     })
   }
 
@@ -74,6 +90,14 @@ export class BatchSelectorComponent implements OnInit {
     this.batches[idx].courseCost = undefined;
     this.batches[idx].weekendCourse = undefined;
     this.batches[idx].weekendCourse = false;
+    this.batches[idx].validationObj = {
+      startDate:true,
+      endDate:true,
+      courseLocation:true,
+      courseLanguages:true,
+      courseCost:true,
+      weekendCourse:true
+    }
   }
 
   clear(idx){
@@ -82,30 +106,23 @@ export class BatchSelectorComponent implements OnInit {
 
   validateData(){
     for(let batch of this.batches ){
-      if(!batch.startDate || !batch.endDate){
-        console.log("1");
-        batch.validated = false;
-      }
-      else if(!batch.weekendCourse){
-        console.log("2");
+        batch.validationObj.startDate = !!batch.startDate;
+        batch.validationObj.endDate = !!batch.endDate;
 
-        batch.validated = false;
-      }
-      else if(!batch.courseLanguages){
-        console.log("3");
+        batch.validationObj.weekendCourse = !!batch.weekendCourse;
 
-        batch.validated = false;
-      }else if(!batch.courseLocation){
-        console.log("4");
+        batch.validationObj.courseLanguages = !!batch.courseLanguages && !!batch.courseLanguages.length;
 
-        batch.validated = false;
-      }else if(batch.courseCost == undefined || batch.courseCost<0){
-        console.log("5");
+        batch.validationObj.courseLocation = !!batch.courseLocation;
 
-        batch.validated = false;
-      }else{
-        batch.validated = true;
-      }
+        batch.validationObj.courseCost =  batch.courseCost != undefined && batch.courseCost >= 0;
+
+        // each field validated
+        if(Object.values(batch.validationObj).filter(x=> x == false).length ==0){
+          batch.validated = true;
+        }else{
+          batch.validated = false;
+        }
     }
 
     this.batchesValidated = this.batches.length >0 && (this.batches.filter(x => x.validated == false).length==0)
@@ -121,14 +138,18 @@ export class BatchSelectorComponent implements OnInit {
   setStartDate(date, idx){
     console.log(date, idx);
     this.batches[idx].startDate = date;
+    this.batches[idx].validationObj.startDate = true;
   }
 
   setEndDate(date, idx){
     this.batches[idx].endDate = date;
+    this.batches[idx].validationObj.endDate = true;
   }
 
   setLanguages(data, idx){
+    console.log(data)
     this.batches[idx].courseLanguages = data;
+    this.batches[idx].validationObj.courseLanguages = this.batches[idx].courseLanguages.length  ? true : false;
   }
 
 }
