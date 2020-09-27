@@ -9,3 +9,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .dropdown-btn{
     background:white;
 }
+
+.mat-datepicker-toggle {
+    background: url("assets/images/ic_selectdate.png") no-repeat !important;
+}

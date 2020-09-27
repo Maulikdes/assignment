@@ -1,21 +1,21 @@
 <table class="table-striped-custom">
     <thead>
-        <th width="16%" >BATCH</th>
-        <th width="33%" >START DATE</th>
-        <th width="33%" >END DATE</th>
-        <th width="18%" ></th>
+        <th width="20%" >BATCH</th>
+        <th width="28%" >START DATE</th>
+        <th width="28%" >END DATE</th>
+        <th width="20%" ></th>
     </thead>
     <tbody>
         <ng-container *ngFor="let data of batches; let idx = index">
             <tr>
-                <td class="bold-text p-2" width="15%"> Batch {{idx+1}} </td>
-                <td class="p-2" >
+                <td class="bold-text p-2"> Batch {{idx+1}} </td>
+                <td >
                     <app-date-picker></app-date-picker>
                 </td>
-                <td class="p-2" >
+                <td>
                     <app-date-picker></app-date-picker>
                 </td>
-                <td class="p-2" width="15%">
+                <td class="p-2">
 
                     <div class="input-group">
 

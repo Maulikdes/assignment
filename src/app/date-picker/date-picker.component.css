@@ -1,12 +1,3 @@
-button.cal, button.cal:active {
-    width: 2rem;
-    background-image: url('../../assets/images/ic_selectdate.png') !important;
-    background-repeat: no-repeat;
-    background-size: 20px;
-    background-position: center;
-    border: none;
-}
-
 .datepicker-only-month-select  { border: 0 !important;}
 
 .datepicker-only-month-select .ngb-dp-months { display: none !important; } 

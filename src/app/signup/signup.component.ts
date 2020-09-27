@@ -5,9 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
-  constructor() { }
+export class SignupComponent{
+  isShowErrMsg: boolean = false;
 
-  ngOnInit() {
+  hideErrMsg(){
+    this.isShowErrMsg = false;
   }
+
+
+
 }

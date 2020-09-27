@@ -49,10 +49,10 @@
             </div>
 
             <!-- Error message -->
-            <div *ngIf="true" class='form-group alert alert-danger'>
+            <div *ngIf="isShowErrMsg" class='form-group alert alert-danger'>
                 <i class="fa fa-exclamation-circle"></i>
                 Fill in the required information to proceed.
-                <span style="float:right" >X</span>
+                <span class="cross-btn" (click)="hideErrorMsg()" >X</span>
             </div>
 
             <div class="padding-bottom-150">&nbsp;</div>
