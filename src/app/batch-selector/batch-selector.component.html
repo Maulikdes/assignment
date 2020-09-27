@@ -68,7 +68,7 @@
                             <div class="col-12 col-md-6 col-lg-6">
                                 <div class="form-group">
                                     <label class="form-label bold-text">Course Language</label>
-                                    <app-multi-checkbox-selector (change)="setLanguages($event, idx)" ></app-multi-checkbox-selector>
+                                    <app-multi-checkbox-selector (change)="setLanguages($event, idx)" [selectedItems]="batches[idx].courseLanguages" ></app-multi-checkbox-selector>
                                 </div>
                                 <span [ngStyle]="{visibility: data.validationObj.courseLanguages ? 'hidden':'visible' }" class="text-danger" > Select at least one language </span>
                             </div>

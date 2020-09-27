@@ -1,6 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 
 @Component({
@@ -11,7 +10,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 export class MultiCheckboxSelectorComponent implements OnInit {
 
   dropdownList = [];
-  selectedItems = [];
+  @Input() selectedItems;
   dropdownSettings = {};
   @Output() change = new EventEmitter();
 
