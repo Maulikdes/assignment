@@ -32,6 +32,7 @@ export class SignupComponent{
 
   // on save validate data
   save(){  
+    this.isShowErrMsg = false;
     this.rowDataValidated = false;
     this.rowDataValidated = this.validateName();
     this.rowDataValidated = this.validateType() && this.rowDataValidated;
@@ -84,6 +85,9 @@ export class SignupComponent{
         if(this.batchValidated && this.rowDataValidated){
           alert("Data saved successfully");
         }
+      }else{
+        this.batchValidated = false;
+        this.isShowErrMsg = false;
       }
     })
   }
